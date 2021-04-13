@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React, { useEffect, useState } from "react";
+import Container from "@material-ui/core/Container";
+import Typography from "@material-ui/core/Typography";
 
 function App() {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    fetch("https://finalspaceapi.com/api/v0/character/?limit=12")
+      .then((res) => res.json())
+      .then((data) => setData(data));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Container>
+        <Typography color="textPrimary" gutterBottom variant="h2" align="center">
+          React Material UI Example
+        </Typography>
+      </Container>
     </div>
   );
 }
